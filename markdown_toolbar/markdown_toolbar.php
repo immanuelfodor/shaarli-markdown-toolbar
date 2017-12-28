@@ -9,27 +9,6 @@
 use Shaarli\Config\ConfigManager;
 
 /**
- * Injecting our Javascript code to the editlink page.
- * 
- * Hook render_editlink.
- *
- * Template placeholders:
- *   - edit_link_plugin: add fields after tags.
- *
- * @param $data array         data passed to plugin
- * @param $conf ConfigManager instance
- *
- * @return array altered $data.
- */
-function hook_markdown_toolbar_render_editlink($data, $conf)
-{
-    $html = file_get_contents(PluginManager::$PLUGINS_PATH . '/markdown_toolbar/markdown_toolbar.html');
-    $data['edit_link_plugin'][] = $html;
-
-    return $data;
-}
-
-/**
  * When editlink page is displayed, include markdown_toolbar CSS files.
  *
  * @param array $data - header data.
@@ -61,6 +40,7 @@ function hook_markdown_toolbar_render_footer($data)
         $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
         $data['js_files'][] = $include_dir . '/jquery/jquery-3.2.1.min.js';
         $data['js_files'][] = $include_dir . '/bootstrap_markdown/js/bootstrap-markdown.js';
+        $data['js_files'][] = $include_dir . '/markdown_toolbar.js';
     }
 
     return $data;
