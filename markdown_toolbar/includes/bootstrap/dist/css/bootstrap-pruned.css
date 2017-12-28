@@ -193,6 +193,10 @@ fieldset[disabled] a.btn {
   border-bottom-left-radius: 0;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .text-muted {
   color: #868e96 !important;
 }
