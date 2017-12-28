@@ -62,7 +62,7 @@ function hook_markdown_toolbar_render_includes($data)
  */
 function hook_markdown_toolbar_render_footer($data, $conf)
 {
-    if ( ! in_array($data['_PAGE_'], [Router::$PAGE_ADDLINK, Router::$PAGE_EDITLINK] ) {
+    if ( ! in_array($data['_PAGE_'], [Router::$PAGE_ADDLINK, Router::$PAGE_EDITLINK]) ) {
         return $data;
     }
 
