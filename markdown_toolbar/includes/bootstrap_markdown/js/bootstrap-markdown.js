@@ -1124,7 +1124,7 @@
               // Give extra word
               chunk = e.__localize('heading text');
             } else {
-              chunk = selected.text + '\n';
+              chunk = selected.text;
             }
 
             // transform selection and set the cursor into chunked text
@@ -1134,7 +1134,7 @@
               e.replaceSelection(chunk);
               cursor = selected.start - pointer;
             } else if (selected.start > 0 && (prevChar = content.substr(selected.start - 1, 1), !!prevChar && prevChar != '\n')) {
-              e.replaceSelection('\n\n### ' + chunk);
+              e.replaceSelection('### ' + chunk);
               cursor = selected.start + 6;
             } else {
               // Empty string before element
@@ -1269,7 +1269,7 @@
                   list[k] = '- ' + v;
                 });
 
-                e.replaceSelection('\n\n' + list.join('\n'));
+                e.replaceSelection(list.join('\n'));
 
                 // Set the cursor
                 cursor = selected.start + 4;
@@ -1322,7 +1322,7 @@
                   i++;
                 });
 
-                e.replaceSelection('\n\n' + list.join('\n'));
+                e.replaceSelection(list.join('\n'));
 
                 // Set the cursor
                 cursor = selected.start + 5;
@@ -1418,7 +1418,7 @@
                   list[k] = '> ' + v;
                 });
 
-                e.replaceSelection('\n\n' + list.join('\n'));
+                e.replaceSelection(list.join('\n'));
 
                 // Set the cursor
                 cursor = selected.start + 4;
