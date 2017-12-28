@@ -1,1 +1,3 @@
 description="Easily insert markdown syntax into the Description field when editing a link."
+parameters="MD_TOOLBAR_LOCALE"
+parameter.DESCRIPTION_ROWS="Language code for the markdown editor. Default: en"

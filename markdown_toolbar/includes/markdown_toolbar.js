@@ -1,3 +1,5 @@
+var mdtQuery = jQuery.noConflict(true);
+
 (function ($) {
 
     var getContentLength = function(e) {
@@ -18,7 +20,7 @@
             resize: "vertical",
             disabledButtons: ["cmdPreview"],
             hiddenButtons: ["cmdPreview"],
-            language: "en",
+            language: markdown_toolbar_locale || "en",
             footer: '<small id="desc-counter" class="text-muted">Chars: 0</small>',
             onShow: function(e) {
                 $(".md-editor").css("box-shadow", "none").css("-webkit-box-shadow", "none");
@@ -33,4 +35,4 @@
         });
     });
 
-})(jQuery.noConflict(true));
+})(mdtQuery);
