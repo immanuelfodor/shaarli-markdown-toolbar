@@ -24,4 +24,4 @@
     'enter image title here': "tytuł obrazka",
     'list text here': "lista"
   };
-}(jQuery));
+}(mdtQuery));

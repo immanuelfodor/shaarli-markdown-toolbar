@@ -24,4 +24,4 @@
     'enter image title here': "sem vlož popis obrázku",
     'list text here': "položka seznamu"
   };
-}(jQuery));
+}(mdtQuery));

@@ -21,4 +21,4 @@
     'enter image title here': "Введіть назву зображення",
     'list text here': "текст списку"
   };
-}(jQuery));
+}(mdtQuery));

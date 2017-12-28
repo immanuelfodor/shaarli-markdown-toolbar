@@ -23,4 +23,4 @@
     'quote here': 'Idézet',
     'code text here': 'Kód'
   };
-}(jQuery));
+}(mdtQuery));

@@ -24,4 +24,4 @@
     'enter image title here': "naslov slike",
     'list text here': "seznam"
   };
-}(jQuery));
+}(mdtQuery));

@@ -23,4 +23,4 @@
     'quote here': 'Indsæt citat her',
     'code text here': 'Indsæt kode her'
   };
-}(jQuery));
+}(mdtQuery));

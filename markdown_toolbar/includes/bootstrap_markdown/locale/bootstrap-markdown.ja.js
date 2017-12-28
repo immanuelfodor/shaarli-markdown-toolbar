@@ -26,4 +26,4 @@
     'code text here': "コード",
     'quote here': "引用挿入"
   };
-}(jQuery));
+}(mdtQuery));

@@ -21,4 +21,4 @@
     'enter image title here': "Inserisci il titolo dell'immagine",
     'list text here': "Testo della lista"
   };
-}(jQuery));
+}(mdtQuery));

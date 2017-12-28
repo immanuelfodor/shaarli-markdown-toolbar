@@ -21,4 +21,4 @@
     'enter image title here': 'Angi bildetittel her',
     'list text here': 'liste tekst her'
   };
-}(jQuery));
+}(mdtQuery));

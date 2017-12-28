@@ -28,4 +28,4 @@
     'quote here': "Cita aquí",
     'Save': "Guardar"
   };
-}(jQuery));
+}(mdtQuery));

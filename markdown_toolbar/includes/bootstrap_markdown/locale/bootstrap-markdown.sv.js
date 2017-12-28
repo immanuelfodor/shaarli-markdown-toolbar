@@ -21,4 +21,4 @@
     'enter image title here': 'Ange bild rubrik här',
     'list text here': 'list text'
   };
-}(jQuery));
+}(mdtQuery));

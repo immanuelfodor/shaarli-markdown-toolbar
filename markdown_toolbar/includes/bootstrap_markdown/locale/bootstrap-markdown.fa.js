@@ -21,4 +21,4 @@
     'enter image title here': "عنوان تصویر را اینجا بنویسید",
     'list text here': "محل متن فهرست"
   };
-}(jQuery));
+}(mdtQuery));

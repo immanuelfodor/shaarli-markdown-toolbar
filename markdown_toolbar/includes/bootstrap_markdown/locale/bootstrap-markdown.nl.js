@@ -21,4 +21,4 @@
     'enter image title here': "Voer de afbeelding titel in",
     'list text here': "lijst item"
   };
-}(jQuery));
+}(mdtQuery));

@@ -21,4 +21,4 @@
     'enter image title here': "ادخل عنوان الصورة هنا",
     'list text here': "اكتب النص هنا"
   };
-}(jQuery));
+}(mdtQuery));

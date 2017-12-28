@@ -27,4 +27,4 @@
     'enter image title here': "Titel des Bildes",
     'list text here': "Aufzählungs-Text"
   };
-}(jQuery));
+}(mdtQuery));

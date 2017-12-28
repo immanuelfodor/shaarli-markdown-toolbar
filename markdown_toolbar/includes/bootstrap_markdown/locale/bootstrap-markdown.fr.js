@@ -28,4 +28,4 @@
     'Code': "Code",
     'code text here': "écrire du code ici"
   };
-}(jQuery));
+}(mdtQuery));
