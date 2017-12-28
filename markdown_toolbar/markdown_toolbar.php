@@ -28,9 +28,26 @@ function hook_markdown_toolbar_render_editlink($data, $conf)
     return $data;
 }
 
+/**
+ * When editlink page is displayed, include markdown_toolbar CSS files.
+ *
+ * @param array $data - header data.
+ *
+ * @return mixed - header data with markdown_toolbar CSS files added.
+ */
+function hook_markdown_toolbar_render_includes($data)
+{
+    if ($data['_PAGE_'] == Router::$PAGE_EDITLINK) {
+        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes/bootstrap/dist/css/bootstrap.min.css';
+        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes/font_awesome/css/font-awesome.min.css';
+        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes/bootstrap_markdown/css/bootstrap-markdown.min.css';
+    }
+
+    return $data;
+}
 
 /**
- * When linklist is displayed, include markdown_toolbar JS files.
+ * When editlink page is displayed, include markdown_toolbar JS files.
  *
  * @param array $data - footer data.
  *
@@ -39,28 +56,11 @@ function hook_markdown_toolbar_render_editlink($data, $conf)
 function hook_markdown_toolbar_render_footer($data)
 {
     if ($data['_PAGE_'] == Router::$PAGE_EDITLINK) {
-        $data['js_files'][] = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/shaarli-markdown_toolbar.js';
+        $data['js_files'][] = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes/bootstrap_markdown/js/bootstrap-markdown.js';
     }
 
     return $data;
 }
-
-/**
- * When linklist is displayed, include markdown_toolbar CSS file.
- *
- * @param array $data - header data.
- *
- * @return mixed - header data with markdown_toolbar CSS file added.
- */
-function hook_markdown_toolbar_render_includes($data)
-{
-    if ($data['_PAGE_'] == Router::$PAGE_EDITLINK) {
-        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/markdown_toolbar.css';
-    }
-
-    return $data;
-}
-
 
 /**
  * This function is never called, but contains translation calls for GNU gettext extraction.
@@ -69,5 +69,4 @@ function markdown_toolbar_dummy_translation()
 {
     // meta
     t('Easily insert markdown syntax into the Description field when editing a link.');
-    t('Hight of the Description textarea. Default: 4');
 }
