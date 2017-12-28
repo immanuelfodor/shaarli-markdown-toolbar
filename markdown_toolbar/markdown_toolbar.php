@@ -23,7 +23,8 @@ use Shaarli\Config\ConfigManager;
  */
 function hook_markdown_toolbar_render_editlink($data, $conf)
 {
-
+    $html = file_get_contents(PluginManager::$PLUGINS_PATH . '/markdown_toolbar/markdown_toolbar.html');
+    $data['edit_link_plugin'][] = $html;
 
     return $data;
 }
