@@ -38,9 +38,10 @@ function hook_markdown_toolbar_render_editlink($data, $conf)
 function hook_markdown_toolbar_render_includes($data)
 {
     if ($data['_PAGE_'] == Router::$PAGE_EDITLINK) {
-        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes/bootstrap/dist/css/bootstrap.min.css';
-        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes/font_awesome/css/font-awesome.min.css';
-        $data['css_files'][] = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes/bootstrap_markdown/css/bootstrap-markdown.min.css';
+        $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
+        $data['css_files'][] = $include_dir . '/bootstrap/dist/css/bootstrap.min.css';
+        $data['css_files'][] = $include_dir . '/font_awesome/css/font-awesome.min.css';
+        $data['css_files'][] = $include_dir . '/bootstrap_markdown/css/bootstrap-markdown.min.css';
     }
 
     return $data;
@@ -56,7 +57,9 @@ function hook_markdown_toolbar_render_includes($data)
 function hook_markdown_toolbar_render_footer($data)
 {
     if ($data['_PAGE_'] == Router::$PAGE_EDITLINK) {
-        $data['js_files'][] = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes/bootstrap_markdown/js/bootstrap-markdown.js';
+        $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
+        $data['js_files'][] = $include_dir . '/jquery/jquery-3.2.1.min.js';
+        $data['js_files'][] = $include_dir . '/bootstrap_markdown/js/bootstrap-markdown.js';
     }
 
     return $data;

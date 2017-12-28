@@ -28,6 +28,7 @@ TODO
 
 This project would not come to life without:
 
+* jQuery: https://jquery.com/
 * Bootstrap Markdown: https://github.com/toopay/bootstrap-markdown
 * Bootstrap: https://github.com/twbs/bootstrap
 * Font Awesome: https://github.com/FortAwesome/Font-Awesome
