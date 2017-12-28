@@ -78,11 +78,12 @@ function hook_markdown_toolbar_render_includes($data)
 /**
  * When editlink page is displayed, include markdown_toolbar JS files.
  *
- * @param array $data - footer data.
- *
+ * @param $data array         footer data.
+ * @param $conf ConfigManager instance
+ * 
  * @return mixed - footer data with markdown_toolbar JS files added.
  */
-function hook_markdown_toolbar_render_footer($data)
+function hook_markdown_toolbar_render_footer($data, $conf)
 {
     if ($data['_PAGE_'] == Router::$PAGE_EDITLINK) {
         $mdToolbarLocale = get_valid_locale($conf);
