@@ -1318,7 +1318,7 @@
                 chunk = list[0];
 
                 $.each(list, function(k, v) {
-                  list[k] = i + '. ' + v;
+                  list[k] = '1. ' + v;
                   i++;
                 });
 
