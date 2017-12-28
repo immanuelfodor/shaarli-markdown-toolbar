@@ -911,7 +911,7 @@
       this.setSelection(index + 2, index + 2); // Put the cursor after the bullet
     },
     addNumberedBullet: function(index, num) {
-      var numBullet = (num + 1) + '. \n';
+      var numBullet = '1. \n';
       this.insertContent(index, numBullet);
 
       var prefixLength = num.toString().length + 2;
