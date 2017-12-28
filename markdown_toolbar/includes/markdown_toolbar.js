@@ -5,6 +5,7 @@
             iconlibrary: "fa", 
             resize: "vertical",
             disabledButtons: ["cmdPreview"],
+            hiddenButtons: ["cmdPreview"],
             language: "en",
             footer: '<small id="desc-counter" class="text-muted">Chars: 0</small>',
             onChange: function(e){
