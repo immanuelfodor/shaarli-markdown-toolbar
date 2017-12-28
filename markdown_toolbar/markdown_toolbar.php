@@ -19,7 +19,7 @@ function hook_markdown_toolbar_render_includes($data)
 {
     if ($data['_PAGE_'] == Router::$PAGE_EDITLINK) {
         $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
-        $data['css_files'][] = $include_dir . '/bootstrap/dist/css/bootstrap.css';
+        $data['css_files'][] = $include_dir . '/bootstrap/dist/css/bootstrap-pruned.min.css';
         $data['css_files'][] = $include_dir . '/font_awesome/css/font-awesome.min.css';
         $data['css_files'][] = $include_dir . '/bootstrap_markdown/css/bootstrap-markdown.min.css';
     }
