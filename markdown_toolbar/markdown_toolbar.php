@@ -68,6 +68,9 @@ function hook_markdown_toolbar_render_footer($data, $conf)
 
     $mdToolbarLocale = get_valid_locale($conf);
     $mdToolbarAutofocus = ($data['_PAGE_'] == Router::$PAGE_ADDLINK) ? "true" : "false";
+    // There is a bug in Router.php:L125-131 that is why the above condition is never true, the page is
+    // always stated as editlink even if it is addlink. So I'm setting this to always true for now.
+    $mdToolbarAutofocus = "true"; 
 
     $html = file_get_contents(PluginManager::$PLUGINS_PATH .'/markdown_toolbar/markdown_toolbar.html');
     $html = sprintf($html, $mdToolbarLocale, $mdToolbarAutofocus);
