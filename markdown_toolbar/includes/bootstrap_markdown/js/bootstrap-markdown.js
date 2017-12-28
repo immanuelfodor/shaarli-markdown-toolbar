@@ -1135,7 +1135,7 @@
               cursor = selected.start - pointer;
             } else if (selected.start > 0 && (prevChar = content.substr(selected.start - 1, 1), !!prevChar && prevChar != '\n')) {
               e.replaceSelection('### ' + chunk);
-              cursor = selected.start + 6;
+              cursor = selected.start + 4;
             } else {
               // Empty string before element
               e.replaceSelection('### ' + chunk);
