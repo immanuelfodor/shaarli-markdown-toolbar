@@ -15,7 +15,7 @@ var mdtQuery = jQuery.noConflict(true);
 
     $(document).ready(function() {
         $("#lf_description").markdown({
-            autofocus: true,
+            autofocus: markdown_toolbar_autofocus || false,
             iconlibrary: "fa", 
             resize: "vertical",
             disabledButtons: ["cmdPreview"],

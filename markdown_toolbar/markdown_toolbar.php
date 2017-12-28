@@ -34,33 +34,6 @@ function get_valid_locale($conf) {
 }
 
 /**
- * Injecting our Javascript code to the editlink page.
- * 
- * Hook render_editlink.
- *
- * Template placeholders:
- *   - edit_link_plugin: add fields after tags.
- *
- * @param $data array         data passed to plugin
- * @param $conf ConfigManager instance
- *
- * @return array altered $data.
- */
-function hook_markdown_toolbar_render_editlink($data, $conf)
-{
-    $mdToolbarLocale = get_valid_locale($conf);
-
-    if ($data['_PAGE_'] == Router::$PAGE_ADDLINK) {
-        $data['edit_link_plugin'][] = "<!-- addlink -->";
-    }
-
-    $html = file_get_contents(PluginManager::$PLUGINS_PATH .'/markdown_toolbar/markdown_toolbar.html');
-    $html = sprintf($html, $mdToolbarLocale);
-    $data['edit_link_plugin'][] = $html;
-
-    return $data;
-}
-/**
  * When editlink page is displayed, include markdown_toolbar CSS files.
  *
  * @param array $data - header data.
@@ -89,17 +62,24 @@ function hook_markdown_toolbar_render_includes($data)
  */
 function hook_markdown_toolbar_render_footer($data, $conf)
 {
-    if ($data['_PAGE_'] == Router::$PAGE_EDITLINK) {
-        $mdToolbarLocale = get_valid_locale($conf);
-        $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
+    if ( ! in_array($data['_PAGE_'], [Router::$PAGE_ADDLINK, Router::$PAGE_EDITLINK] ) {
+        return $data;
+    }
 
-        $data['js_files'][] = $include_dir . '/jquery/jquery-3.2.1.min.js';
-        $data['js_files'][] = $include_dir . '/bootstrap_markdown/js/bootstrap-markdown.js';
-        $data['js_files'][] = $include_dir . '/markdown_toolbar.js';
-        
-        if ($mdToolbarLocale != MD_TOOLBAR_DEFAULT_LOCALE) {
-            $data['js_files'][] = $include_dir . '/bootstrap_markdown/locale/bootstrap-markdown.' . $mdToolbarLocale . '.js';
-        }
+    $mdToolbarLocale = get_valid_locale($conf);
+    $mdToolbarAutofocus = ($data['_PAGE_'] == Router::$PAGE_ADDLINK) ? "false" : "true";
+
+    $html = file_get_contents(PluginManager::$PLUGINS_PATH .'/markdown_toolbar/markdown_toolbar.html');
+    $html = sprintf($html, $mdToolbarLocale, $mdToolbarAutofocus);
+    $data['endofpage'][] = $html;
+
+    $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
+    $data['js_files'][] = $include_dir . '/jquery/jquery-3.2.1.min.js';
+    $data['js_files'][] = $include_dir . '/bootstrap_markdown/js/bootstrap-markdown.js';
+    $data['js_files'][] = $include_dir . '/markdown_toolbar.js';
+    
+    if ($mdToolbarLocale != MD_TOOLBAR_DEFAULT_LOCALE) {
+        $data['js_files'][] = $include_dir . '/bootstrap_markdown/locale/bootstrap-markdown.' . $mdToolbarLocale . '.js';
     }
 
     return $data;
