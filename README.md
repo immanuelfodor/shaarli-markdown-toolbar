@@ -1,12 +1,13 @@
 # Shaarli Markdown Toolbar Plugin 
 
-[Shaarli](https://github.com/shaarli/Shaarli) plugin to easily insert markdown syntax into the **Description** field when editing a link
+[Shaarli](https://github.com/shaarli/Shaarli) plugin to easily insert markdown syntax into the **Description** field when editing a link.
 
 Tested on Shaarli 0.9.2 with the [Shaarli-Material](https://github.com/kalvn/Shaarli-Material) and the built-in [default](https://github.com/shaarli/Shaarli/tree/master/tpl/default) themes using desktop and Android Chrome browsers.
 
 ## Features
 
-* Adds a markdown editor toolbar to the Description field when adding or editing a link
+* Displays a markdown editor toolbar above the Description field when adding or editing a link
+* Shows the current description's character count below the textarea (can be useful for e.g., Twitter publishing)
 * Supports distraction-free writing in fullscreen mode
 * Works well on both desktop and mobile
 * The editor has built-in translations for 23 locales
