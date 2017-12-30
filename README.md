@@ -99,7 +99,7 @@ Supported values: `en`, `ar`, `cs`, `da`, `de`, `fa`, `fr`, `hu`, `it`, `ja`, `k
     * The editor does not well fit the editlink form
     * The "exit fullscreen" button is positioned out of the screen 
     * The "enter fullscreen" button is misplaced on some mobile resolutions
-* Any other issues that the [Bootstrap Markdown](https://github.com/toopay/bootstrap-markdown) editor has can be present here though I tried to fix some of them. That repo has not been updated for years, so I made all changes locally.
+* Any other issues that the [Bootstrap Markdown](https://github.com/toopay/bootstrap-markdown) editor has can be present here though I tried to fix some of them locally.
 
 If you fix an issue from the list or some newly discovered one, please open a [pull request here](https://github.com/immanuelfodor/shaarli-markdown-toolbar/pulls).
 
