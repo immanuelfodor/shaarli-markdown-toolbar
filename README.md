@@ -84,7 +84,8 @@ Supported values: `en`, `ar`, `cs`, `da`, `de`, `fa`, `fr`, `hu`, `it`, `ja`, `k
 ```
 "general": {
     "plugins": {
-        "MD_TOOLBAR_LOCALE": "ja"
+        "MD_TOOLBAR_LOCALE": "ja",
+        [...]
     },
 }
 ```
