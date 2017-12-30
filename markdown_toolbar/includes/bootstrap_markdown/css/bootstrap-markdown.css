@@ -164,12 +164,20 @@
 .pure-g .md-header.btn-toolbar {
     text-align: left;
 }
+.pure-g .md-editor textarea {
+    margin-left: 1px !important;
+    width: 99.9% !important;
+}
 .pure-g .md-editor.md-fullscreen-mode {
     width: 100%;
 }
 .pure-g .md-editor.md-fullscreen-mode .md-header.btn-toolbar {
     text-align: center;
     margin-top: 30px !important;
+}
+.md-editor.md-fullscreen-mode .md-fullscreen-controls {
+    top: 55px;
+    right: 60px;
 }
 .pure-g .md-editor.md-fullscreen-mode textarea {
     margin-top: 30px !important;
