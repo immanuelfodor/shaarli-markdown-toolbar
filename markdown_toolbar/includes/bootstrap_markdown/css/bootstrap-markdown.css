@@ -189,6 +189,9 @@
 /* Common */
 @media only screen and (max-width: 680px) {
 
+    .md-editor.md-fullscreen-mode {
+        max-height: 999999px !important;
+    }
     .md-editor.md-fullscreen-mode .md-header {
         margin-left: -30px !important;
     }
