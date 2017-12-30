@@ -154,13 +154,31 @@
 }
 
 
+/*
+ * Pure-G (default) theme adjustments for better compatibility by Immánuel Fodor | fodor.it 
+ */
+.pure-g .md-editor {
+    width: 90%;
+    margin: 0 auto;
+}
+.pure-g .md-header.btn-toolbar {
+    text-align: left;
+}
+.pure-g .md-editor.md-fullscreen-mode {
+    width: 100%;
+}
+.pure-g .md-editor.md-fullscreen-mode .md-header.btn-toolbar {
+    text-align: center;
+    margin-top: 30px !important;
+}
+.pure-g .md-editor.md-fullscreen-mode textarea {
+    margin-top: 30px !important;
+}
+
+
 /* 
  * Responsive adjustments by Immánuel Fodor | fodor.it 
  */
-
- .md-editor.md-fullscreen-mode {
-    max-height: 999999px !important;
-}
 
 /* Small */
 @media only screen and (max-width: 480px) {
