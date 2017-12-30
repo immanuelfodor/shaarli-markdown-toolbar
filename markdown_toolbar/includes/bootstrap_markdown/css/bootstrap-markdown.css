@@ -153,3 +153,47 @@
     width:100%
 }
 
+
+/* 
+ * Responsive adjustments by Immánuel Fodor | fodor.it 
+ */
+
+/* Small */
+@media only screen and (max-width: 480px) {
+
+    .md-editor.md-fullscreen-mode {
+        padding: 60px 15px 15px !important;
+    }
+   .md-editor.md-fullscreen-mode .md-input, 
+   .md-editor.md-fullscreen-mode .md-preview {
+       padding: 20px 0px !important;
+       font-size: 15px !important;
+   }
+
+}
+
+/* Medium */
+@media only screen and (min-width: 481px) and (max-width: 680px) {
+    
+    .md-editor.md-fullscreen-mode {
+        padding: 60px 22px 15px !important;
+    }
+   .md-editor.md-fullscreen-mode .md-input, 
+   .md-editor.md-fullscreen-mode .md-preview {
+       padding: 20px 5px !important;
+       font-size: 17px !important;
+   }
+
+}
+
+/* Common */
+@media only screen and (max-width: 680px) {
+
+    .md-editor.md-fullscreen-mode .md-header {
+        margin-left: -30px !important;
+    }
+    .md-editor.md-fullscreen-mode .md-control-fullscreen {
+        display: none;
+    }
+
+}
