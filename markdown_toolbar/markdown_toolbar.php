@@ -95,5 +95,5 @@ function markdown_toolbar_dummy_translation()
 {
     // meta
     t('Easily insert markdown syntax into the Description field when editing a link.');
-    t('Language code for the markdown editor. Default: en');
+    t('Localization of the editor. Default: en');
 }
