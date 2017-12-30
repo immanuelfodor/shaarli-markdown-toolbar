@@ -77,9 +77,17 @@ Go to the Plugin Administration page, and edit the following settings (with the 
 * **MD_TOOLBAR_LOCALE**\
 *Localization of the editor. Default: en*\
 Example value: `hu`\
-Supported values: `en`, `ar`, `cs`, `da`, `de`, `fa`, `fr`, `hu`, `it`, `ja`, `kr`, `nb`, `nl`, `pl`, `ptBR`, `ru`, `sl`, `sv`, `tr`, `ua`, `zh-tw`, `zh`
+Supported values: `en`, `ar`, `cs`, `da`, `de`, `fa`, `fr`, `hu`, `it`, `ja`, `kr`, `nb`, `nl`, `pl`, `ptBR`, `ru`, `sl`, `sv`, `tr`, `ua`, `zh-tw`, `zh`. If not specified or malformed, defaults to `en`.
 
-> Note: this setting can also be set in `data/config.json.php`, in the plugins section.
+> Note: this setting can also be set in `data/config.json.php`, in the `plugins` section:
+
+```
+"general": {
+    "plugins": {
+        "MD_TOOLBAR_LOCALE": "ja"
+    },
+}
+```
 
 ## Known issues
 
