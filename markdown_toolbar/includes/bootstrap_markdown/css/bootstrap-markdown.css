@@ -181,6 +181,7 @@
 }
 .pure-g .md-editor.md-fullscreen-mode textarea {
     margin-top: 30px !important;
+    width: 100% !important;
 }
 
 
