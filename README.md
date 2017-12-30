@@ -24,7 +24,7 @@ After plugin enabled with default `MD_TOOLBAR_LOCALE` settings:
 
 ### Edit Link page
 
-After plugin enabled and the [Shaarli Descriptor Plugin](https://github.com/immanuelfodor/shaarli-descriptor)'s `DESCRIPTION_ROWS` parameter is set to `12` to have more space in the editor area:
+After plugin enabled and the [Shaarli Descriptor Plugin](https://github.com/immanuelfodor/shaarli-descriptor)'s `DESCRIPTION_ROWS` parameter is set to `12` to have more vertical space in the editor area:
 
 ![Shaarli Markdown Toolbar edit link page](screenshots/shaarli-markdown-toolbar-editlink.png)
 
@@ -37,7 +37,8 @@ Distraction-free writing can be enabled by clicking on the fullscreen button whi
 ## Usage
 
 * Select some text and click on any of the toolbar buttons to apply formatting.
-* If you click one of the buttons without previous selection, you get a corresponding default text with the desired formatting applied to it. The selection is then applied to the default text for quick replacement.
+* If you click one of the buttons without previous selection, you get a corresponding default text with the desired formatting applied to it. The selection is then moved to the default text for quick replacement.
+* Bold, italic, heading, code and quote buttons support a 2nd click when all its contents are selected to remove the formatting from around the text. Only the inside text should be selected in this case.
 * The plugin has built-in translations in 23 languages for the toolbar buttons and default texts. See the *Configuration* section here on this page for further info how to enable localization.
 * Works best with the [Shaarli Descriptor Plugin](https://github.com/immanuelfodor/shaarli-descriptor) when `DESCRIPTION_ROWS` is set around `12`.
 * The built-in [markdown plugin](https://github.com/shaarli/Shaarli/tree/master/plugins/markdown) is not a prerequisite to activate the Markdown Toolbar, however, it is recommended to turn it on to see the formatted results after saving.
