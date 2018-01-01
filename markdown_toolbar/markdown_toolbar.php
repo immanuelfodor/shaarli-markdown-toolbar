@@ -78,8 +78,8 @@ function hook_markdown_toolbar_render_footer($data, $conf)
 
     $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
     $data['js_files'][] = $include_dir . '/jquery/jquery-3.2.1.min.js';
-    $data['js_files'][] = $include_dir . '/bootstrap_markdown/js/bootstrap-markdown.js';
     $data['js_files'][] = $include_dir . '/markdown_toolbar.js';
+    $data['js_files'][] = $include_dir . '/bootstrap_markdown/js/bootstrap-markdown.js';
     
     if ($mdToolbarLocale != MD_TOOLBAR_DEFAULT_LOCALE) {
         $data['js_files'][] = $include_dir . '/bootstrap_markdown/locale/bootstrap-markdown.' . $mdToolbarLocale . '.js';
