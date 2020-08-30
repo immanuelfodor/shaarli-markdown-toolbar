@@ -2,7 +2,7 @@
 
 [Shaarli](https://github.com/shaarli/Shaarli) plugin to easily insert markdown syntax into the **Description** field when editing a link.
 
-Tested on Shaarli 0.11.1 with the [Shaarli-Material](https://github.com/kalvn/Shaarli-Material) and the built-in [default](https://github.com/shaarli/Shaarli/tree/master/tpl/default) themes using desktop and Android Chrome browsers.
+Tested on Shaarli 0.11.1 with the [Shaarli-Material](https://github.com/kalvn/Shaarli-Material) and the built-in [default](https://github.com/shaarli/Shaarli/tree/master/tpl/default) themes using desktop and Android Chrome browsers. Should be compatible with Shaarli 0.12.0-beta as well which introduced a major internal rewrite ([#1511](https://github.com/shaarli/Shaarli/pull/1511)).
 
 ## Features
 
