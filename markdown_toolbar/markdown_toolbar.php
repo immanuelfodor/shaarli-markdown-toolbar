@@ -12,7 +12,7 @@ use Shaarli\Legacy\LegacyRouter;
 use Shaarli\Plugin\PluginManager;
 use Shaarli\Config\ConfigManager;
 
-/*
+/**
  * This is the plugin's default language.
  */
 define("MD_TOOLBAR_DEFAULT_LOCALE", "en");
@@ -25,7 +25,7 @@ define("MD_TOOLBAR_DEFAULT_LOCALE", "en");
  * 
  * @param string $route - the route as string
  * 
- * @return string the route without underscores
+ * @return string - the route without underscores
  */
 function mdtb_strip_underscores($route)
 {
@@ -39,7 +39,7 @@ function mdtb_strip_underscores($route)
  * @see: https://github.com/shaarli/Shaarli/pull/1511
  * @see: https://github.com/ilesinge/shaarli-related/pull/4/files
  * 
- * @return string the namespaced router class name
+ * @return string - the namespaced router class name
  */
 function mdtb_get_router()
 {
@@ -61,7 +61,7 @@ function mdtb_get_router()
  *
  * @param ConfigManager $conf - configmanager instance
  *
- * @return string the valid locale code.
+ * @return string - the valid locale code
  */
 function mdtb_get_valid_locale($conf)
 {
@@ -121,11 +121,15 @@ function hook_markdown_toolbar_render_footer($data, $conf)
         return $data;
     }
 
-    $mdToolbarLocale = mdtb_get_valid_locale($conf);
-    $mdToolbarAutofocus = ($data['_PAGE_'] == $router::$PAGE_ADDLINK) ? "true" : "false";
+    if (mdtb_strip_underscores($data['_PAGE_']) == mdtb_strip_underscores($router::$PAGE_ADDLINK)) {
+        $mdToolbarAutofocus = "true";
+    } else {
+        $mdToolbarAutofocus = "false";
+    }
     // There is a bug in (Legacy)Router::findPage() that is why the above condition is never true, the page is
     // always stated as editlink even if it is addlink. So I'm setting this to always true for now.
     $mdToolbarAutofocus = "true";
+    $mdToolbarLocale = mdtb_get_valid_locale($conf);
 
     $html = file_get_contents(PluginManager::$PLUGINS_PATH . '/markdown_toolbar/markdown_toolbar.html');
     $html = sprintf($html, $mdToolbarLocale, $mdToolbarAutofocus);
