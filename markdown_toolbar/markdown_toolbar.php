@@ -7,6 +7,7 @@
  */
 
 use Shaarli\Router;
+use Shaarli\Legacy\LegacyRouter;
 use Shaarli\Plugin\PluginManager;
 use Shaarli\Config\ConfigManager;
 
@@ -16,14 +17,36 @@ use Shaarli\Config\ConfigManager;
 define("MD_TOOLBAR_DEFAULT_LOCALE", "en");
 
 /**
+ * Get the available Shaarli router class.
+ * Keeps compatibility with older Shaarlies besides supporting the new Slim rewrite.
+ * 
+ * @see: https://github.com/shaarli/Shaarli/pull/1511
+ * @see: https://github.com/ilesinge/shaarli-related/pull/4/files
+ * 
+ * @return string the namespaced router class name
+ */
+function mdtb_get_router() {
+    /** introduced with the Slim rewrite of the recent Shaarli */
+    $newShaarliRouter = 'Shaarli\Legacy\LegacyRouter';
+    /** original router class of old Shaarlies */
+    $oldShaarliRouter = 'Shaarli\Router';
+
+    if (class_exists($newShaarliRouter)) {
+        return $newShaarliRouter;
+    }
+
+    return $oldShaarliRouter;
+}
+
+/**
  * Getting the locale from the configuration.
  * If unset or not valid, return the default value.
  *
- * @param $conf ConfigManager instance
+ * @param ConfigManager $conf - configmanager instance
  *
  * @return string the valid locale code.
  */
-function get_valid_locale($conf) {
+function mdtb_get_valid_locale($conf) {
     $locales = ["en", "ar", "cs", "da", "de", "fa", "fr", "hu", "it", "ja", "kr", "nb", 
                 "nl", "pl", "ptBR", "ru", "sl", "sv", "tr", "ua", "zh-tw", "zh"];
     $mdToolbarLocale = $conf->get('plugins.MD_TOOLBAR_LOCALE');
@@ -44,7 +67,9 @@ function get_valid_locale($conf) {
  */
 function hook_markdown_toolbar_render_includes($data)
 {
-    if ($data['_PAGE_'] == Router::$PAGE_EDITLINK) {
+    $router = mdtb_get_router();
+
+    if ($data['_PAGE_'] == $router::$PAGE_EDITLINK) {
         $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
         $data['css_files'][] = $include_dir . '/bootstrap/dist/css/bootstrap-pruned.min.css';
         $data['css_files'][] = $include_dir . '/font_awesome/css/font-awesome.min.css';
@@ -57,20 +82,22 @@ function hook_markdown_toolbar_render_includes($data)
 /**
  * When editlink page is displayed, include markdown_toolbar JS files.
  *
- * @param $data array         footer data.
- * @param $conf ConfigManager instance
+ * @param array $data - footer data.
+ * @param ConfigManager $conf - configmanager instance
  * 
  * @return mixed - footer data with markdown_toolbar JS files added.
  */
 function hook_markdown_toolbar_render_footer($data, $conf)
 {
-    if ( ! in_array($data['_PAGE_'], [Router::$PAGE_ADDLINK, Router::$PAGE_EDITLINK]) ) {
+    $router = mdtb_get_router();
+
+    if ( ! in_array($data['_PAGE_'], [$router::$PAGE_ADDLINK, $router::$PAGE_EDITLINK]) ) {
         return $data;
     }
 
-    $mdToolbarLocale = get_valid_locale($conf);
-    $mdToolbarAutofocus = ($data['_PAGE_'] == Router::$PAGE_ADDLINK) ? "true" : "false";
-    // There is a bug in Router.php:L125-131 that is why the above condition is never true, the page is
+    $mdToolbarLocale = mdtb_get_valid_locale($conf);
+    $mdToolbarAutofocus = ($data['_PAGE_'] == $router::$PAGE_ADDLINK) ? "true" : "false";
+    // There is a bug in (Legacy)Router::findPage() that is why the above condition is never true, the page is
     // always stated as editlink even if it is addlink. So I'm setting this to always true for now.
     $mdToolbarAutofocus = "true"; 
 
