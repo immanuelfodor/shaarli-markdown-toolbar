@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Shaarli Markdown Toolbar Plugin 
  *
@@ -17,6 +18,21 @@ use Shaarli\Config\ConfigManager;
 define("MD_TOOLBAR_DEFAULT_LOCALE", "en");
 
 /**
+ * Strip underscores from routes to maintain compatibility between old 
+ * and new Shaarlies after the Slim rewrite.
+ * 
+ * @see: https://github.com/shaarli/Shaarli/pull/1511#issuecomment-683393764
+ * 
+ * @param string $route - the route as string
+ * 
+ * @return string the route without underscores
+ */
+function mdtb_strip_underscores($route)
+{
+    return str_replace('_', '', $route);
+}
+
+/**
  * Get the available Shaarli router class.
  * Keeps compatibility with older Shaarlies besides supporting the new Slim rewrite.
  * 
@@ -25,7 +41,8 @@ define("MD_TOOLBAR_DEFAULT_LOCALE", "en");
  * 
  * @return string the namespaced router class name
  */
-function mdtb_get_router() {
+function mdtb_get_router()
+{
     /** introduced with the Slim rewrite of the recent Shaarli */
     $newShaarliRouter = 'Shaarli\Legacy\LegacyRouter';
     /** original router class of old Shaarlies */
@@ -46,12 +63,15 @@ function mdtb_get_router() {
  *
  * @return string the valid locale code.
  */
-function mdtb_get_valid_locale($conf) {
-    $locales = ["en", "ar", "cs", "da", "de", "fa", "fr", "hu", "it", "ja", "kr", "nb", 
-                "nl", "pl", "ptBR", "ru", "sl", "sv", "tr", "ua", "zh-tw", "zh"];
+function mdtb_get_valid_locale($conf)
+{
+    $locales = [
+        "en", "ar", "cs", "da", "de", "fa", "fr", "hu", "it", "ja", "kr", "nb",
+        "nl", "pl", "ptBR", "ru", "sl", "sv", "tr", "ua", "zh-tw", "zh"
+    ];
     $mdToolbarLocale = $conf->get('plugins.MD_TOOLBAR_LOCALE');
 
-    if (empty($mdToolbarLocale) || ! in_array($mdToolbarLocale, $locales)) {
+    if (empty($mdToolbarLocale) || !in_array($mdToolbarLocale, $locales)) {
         $mdToolbarLocale = MD_TOOLBAR_DEFAULT_LOCALE;
     }
 
@@ -69,7 +89,7 @@ function hook_markdown_toolbar_render_includes($data)
 {
     $router = mdtb_get_router();
 
-    if ($data['_PAGE_'] == $router::$PAGE_EDITLINK) {
+    if (mdtb_strip_underscores($data['_PAGE_']) == mdtb_strip_underscores($router::$PAGE_EDITLINK)) {
         $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
         $data['css_files'][] = $include_dir . '/bootstrap/dist/css/bootstrap-pruned.min.css';
         $data['css_files'][] = $include_dir . '/font_awesome/css/font-awesome.min.css';
@@ -91,7 +111,13 @@ function hook_markdown_toolbar_render_footer($data, $conf)
 {
     $router = mdtb_get_router();
 
-    if ( ! in_array($data['_PAGE_'], [$router::$PAGE_ADDLINK, $router::$PAGE_EDITLINK]) ) {
+    if (!in_array(
+        mdtb_strip_underscores($data['_PAGE_']),
+        [
+            mdtb_strip_underscores($router::$PAGE_ADDLINK),
+            mdtb_strip_underscores($router::$PAGE_EDITLINK)
+        ]
+    )) {
         return $data;
     }
 
@@ -99,9 +125,9 @@ function hook_markdown_toolbar_render_footer($data, $conf)
     $mdToolbarAutofocus = ($data['_PAGE_'] == $router::$PAGE_ADDLINK) ? "true" : "false";
     // There is a bug in (Legacy)Router::findPage() that is why the above condition is never true, the page is
     // always stated as editlink even if it is addlink. So I'm setting this to always true for now.
-    $mdToolbarAutofocus = "true"; 
+    $mdToolbarAutofocus = "true";
 
-    $html = file_get_contents(PluginManager::$PLUGINS_PATH .'/markdown_toolbar/markdown_toolbar.html');
+    $html = file_get_contents(PluginManager::$PLUGINS_PATH . '/markdown_toolbar/markdown_toolbar.html');
     $html = sprintf($html, $mdToolbarLocale, $mdToolbarAutofocus);
     $data['endofpage'][] = $html;
 
@@ -109,7 +135,7 @@ function hook_markdown_toolbar_render_footer($data, $conf)
     $data['js_files'][] = $include_dir . '/jquery/jquery-3.2.1.min.js';
     $data['js_files'][] = $include_dir . '/markdown_toolbar.js';
     $data['js_files'][] = $include_dir . '/bootstrap_markdown/js/bootstrap-markdown.js';
-    
+
     if ($mdToolbarLocale != MD_TOOLBAR_DEFAULT_LOCALE) {
         $data['js_files'][] = $include_dir . '/bootstrap_markdown/locale/bootstrap-markdown.' . $mdToolbarLocale . '.js';
     }
