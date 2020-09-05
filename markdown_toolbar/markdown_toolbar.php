@@ -18,21 +18,6 @@ use Shaarli\Config\ConfigManager;
 define("MD_TOOLBAR_DEFAULT_LOCALE", "en");
 
 /**
- * Strip underscores from routes to maintain compatibility between old 
- * and new Shaarlies after the Slim rewrite.
- * 
- * @see: https://github.com/shaarli/Shaarli/pull/1511#issuecomment-683393764
- * 
- * @param string $route - the route as string
- * 
- * @return string - the route without underscores
- */
-function mdtb_strip_underscores($route)
-{
-    return str_replace('_', '', $route);
-}
-
-/**
  * Get the available Shaarli router class.
  * Keeps compatibility with older Shaarlies besides supporting the new Slim rewrite.
  * 
@@ -89,7 +74,7 @@ function hook_markdown_toolbar_render_includes($data)
 {
     $router = mdtb_get_router();
 
-    if (mdtb_strip_underscores($data['_PAGE_']) == mdtb_strip_underscores($router::$PAGE_EDITLINK)) {
+    if ($data['_PAGE_'] == $router::$PAGE_EDITLINK) {
         $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
         $data['css_files'][] = $include_dir . '/bootstrap/dist/css/bootstrap-pruned.min.css';
         $data['css_files'][] = $include_dir . '/font_awesome/css/font-awesome.min.css';
@@ -111,17 +96,11 @@ function hook_markdown_toolbar_render_footer($data, $conf)
 {
     $router = mdtb_get_router();
 
-    if (!in_array(
-        mdtb_strip_underscores($data['_PAGE_']),
-        [
-            mdtb_strip_underscores($router::$PAGE_ADDLINK),
-            mdtb_strip_underscores($router::$PAGE_EDITLINK)
-        ]
-    )) {
+    if (!in_array($data['_PAGE_'], [$router::$PAGE_ADDLINK, $router::$PAGE_EDITLINK])) {
         return $data;
     }
 
-    if (mdtb_strip_underscores($data['_PAGE_']) == mdtb_strip_underscores($router::$PAGE_ADDLINK)) {
+    if ($data['_PAGE_'] == $router::$PAGE_ADDLINK) {
         $mdToolbarAutofocus = "true";
     } else {
         $mdToolbarAutofocus = "false";
