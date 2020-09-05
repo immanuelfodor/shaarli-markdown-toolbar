@@ -121,7 +121,7 @@ function hook_markdown_toolbar_render_footer($data, $conf)
     $mdToolbarAutofocus = "true";
     $mdToolbarLocale = mdtb_get_valid_locale($conf);
 
-    $html = file_get_contents(mdtb_get_basepath($data) . '/markdown_toolbar/markdown_toolbar.html');
+    $html = file_get_contents(PluginManager::$PLUGINS_PATH . '/markdown_toolbar/markdown_toolbar.html');
     $html = sprintf($html, $mdToolbarLocale, $mdToolbarAutofocus);
     $data['endofpage'][] = $html;
 
