@@ -41,17 +41,6 @@ function mdtb_get_router()
 }
 
 /**
- * Get plugin assets base path
- * 
- * @param array $data - hook data
- * 
- * @return string - the basepath of the assets
- */
-function mdtb_get_basepath($data) {
-    return ($data['_BASE_PATH_'] ?? '') . '/' . PluginManager::$PLUGINS_PATH;
-}
-
-/**
  * Getting the locale from the configuration.
  * If unset or not valid, return the default value.
  *
@@ -86,7 +75,7 @@ function hook_markdown_toolbar_render_includes($data)
     $router = mdtb_get_router();
 
     if ($data['_PAGE_'] == $router::$PAGE_EDITLINK) {
-        $include_dir = mdtb_get_basepath($data) . '/markdown_toolbar/includes';
+        $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
         $data['css_files'][] = $include_dir . '/bootstrap/dist/css/bootstrap-pruned.min.css';
         $data['css_files'][] = $include_dir . '/font_awesome/css/font-awesome.min.css';
         $data['css_files'][] = $include_dir . '/bootstrap_markdown/css/bootstrap-markdown.min.css';
@@ -125,7 +114,7 @@ function hook_markdown_toolbar_render_footer($data, $conf)
     $html = sprintf($html, $mdToolbarLocale, $mdToolbarAutofocus);
     $data['endofpage'][] = $html;
 
-    $include_dir = mdtb_get_basepath($data) . '/markdown_toolbar/includes';
+    $include_dir = PluginManager::$PLUGINS_PATH . '/markdown_toolbar/includes';
     $data['js_files'][] = $include_dir . '/jquery/jquery-3.2.1.min.js';
     $data['js_files'][] = $include_dir . '/markdown_toolbar.js';
     $data['js_files'][] = $include_dir . '/bootstrap_markdown/js/bootstrap-markdown.js';
